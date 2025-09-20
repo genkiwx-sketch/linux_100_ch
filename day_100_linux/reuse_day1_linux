@@ -1,0 +1,22 @@
+
+ssh-keygen -t ed25519 -C "mail" -f ~/.ssh/id_ed25519_sketch
+
+
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519_sketch
+
+Host github-sketch
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519_sketch
+  IdentitiesOnly yes
+
+
+cat ~/.ssh/id_ed25519_sketch.pub
+
+
+ssh -T git@github-sketch
+
+
+git remote set-url origin git@github-sketch:genkiwx-sketch/REPO.git
+git push origin main
